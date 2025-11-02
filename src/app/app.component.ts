@@ -17,14 +17,15 @@ interface Contato {
 @Component({
   selector: 'app-root',
   standalone: true,
-   imports: [CommonModule,
+  imports: [
+             CommonModule,
              ContainerComponent,
              CabecalhoComponent,
              SeparadorComponent,
              ContatoComponent,
              FormsModule,
              FormularioContatoComponent
-            ],
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
