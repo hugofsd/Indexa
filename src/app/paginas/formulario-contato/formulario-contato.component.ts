@@ -2,7 +2,7 @@ import { ContainerComponent } from './../../componentes/container/container.comp
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { SeparadorComponent } from '../../componentes/separador/separador.component';
-import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-contato',
@@ -11,7 +11,7 @@ import { FormControl, FormGroup, FormsModule } from '@angular/forms';
     ContainerComponent,
     SeparadorComponent,
     FormsModule,
-
+    ReactiveFormsModule
   ],
   standalone: true,
   templateUrl: './formulario-contato.component.html',
@@ -19,17 +19,30 @@ import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 })
 export class FormularioContatoComponent {
 
+
   contatoForm!: FormGroup;
 
-   constructor() {
+  constructor() {
     this.contatoForm = new FormGroup({
       nome: new FormControl('Hugo'),
-      telefone: new FormControl(''),
-      email: new FormControl(''),
+      telefone: new FormControl('99 9999-9999'),
+      email: new FormControl('hugo@gmail.com'),
       aniversario: new FormControl(''),
       redes: new FormControl(''),
-      observacoes: new FormControl('')
+      observacoes: new FormControl('Olá Mundo')
     })
 
+  }
+
+  cancelar() {
+    throw new Error('Function not implemented.');
+  }
+
+  salvarContato() {
+    console.log(this.contatoForm.value);
+  }
+
+
+
 }
-}
+
