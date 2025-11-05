@@ -1,59 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ContainerComponent } from './componentes/container/container.component';
-import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component';
-import { SeparadorComponent } from './componentes/separador/separador.component';
-import { ContatoComponent } from './componentes/contato/contato.component';
-import agenda from './agenda.json';
 import { FormsModule } from '@angular/forms';
 import { FormularioContatoComponent } from './paginas/formulario-contato/formulario-contato.component';
-
-interface Contato {
-  id: number
-  nome: string
-  telefone: string
-}
+import { ListaContatosComponent } from "./paginas/lista-contatos/lista-contatos.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-             CommonModule,
-             ContainerComponent,
-             CabecalhoComponent,
-             SeparadorComponent,
-             ContatoComponent,
-             FormsModule,
-             FormularioContatoComponent
-  ],
+    CommonModule,
+    FormsModule,
+    FormularioContatoComponent,
+    ListaContatosComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-   alfabeto: string = 'abcdefghijklmnopqrstuvwxyz'
-   contatos: Contato[] = agenda;
-   filtroPorTexto: string = '';
-
-  // Remove os acentos de uma string
-  removerAcentos(texto: string): string {
-    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  }
-
-  filtrarContatosPorTexto(): Contato[] {
-    if (!this.filtroPorTexto) {
-      return this.contatos;
-    }
-    return this.contatos.filter(contato => {
-      // Compara os nomes sem acentuações
-      return this.removerAcentos(contato.nome).toLowerCase().includes(this.removerAcentos(this.filtroPorTexto).toLowerCase());
-    })
-  }
-
-  filtrarContatosPorLetraInicial(letra: string): Contato[] {
-    return this.filtrarContatosPorTexto().filter(contato => {
-      // Compara a letra inicial sem considerar acentuações
-      return this.removerAcentos(contato.nome).toLowerCase().startsWith(this.removerAcentos(letra).toLowerCase());
-    })
-  }
 
 }
