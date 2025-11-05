@@ -5,6 +5,8 @@ import { CabecalhoComponent } from '../../componentes/cabecalho/cabecalho.compon
 import { SeparadorComponent } from '../../componentes/separador/separador.component';
 import { ContatoComponent } from '../../componentes/contato/contato.component';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { FormularioContatoComponent } from '../formulario-contato/formulario-contato.component';
 
 interface Contato {
   id: number
@@ -19,7 +21,9 @@ interface Contato {
              CabecalhoComponent,
              SeparadorComponent,
              ContatoComponent,
-             FormsModule
+             FormsModule,
+             FormularioContatoComponent,
+             RouterLink
   ],
   templateUrl: './lista-contatos.component.html',
   styleUrl: './lista-contatos.component.css'

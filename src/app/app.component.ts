@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FormularioContatoComponent } from './paginas/formulario-contato/formulario-contato.component';
-import { ListaContatosComponent } from "./paginas/lista-contatos/lista-contatos.component";
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -10,8 +9,7 @@ import { ListaContatosComponent } from "./paginas/lista-contatos/lista-contatos.
   imports: [
     CommonModule,
     FormsModule,
-    FormularioContatoComponent,
-    ListaContatosComponent
+    RouterOutlet
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
