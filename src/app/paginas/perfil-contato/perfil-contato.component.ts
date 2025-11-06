@@ -1,3 +1,4 @@
+import { ContatoService } from './../../services/contato.service';
 import { Component } from '@angular/core';
 import { ContainerComponent } from '../../componentes/container/container.component';
 import { CommonModule } from '@angular/common';
@@ -9,25 +10,48 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
   standalone: true,
   imports: [
     CommonModule,
-    ContainerComponent
+    ContainerComponent,
   ],
   templateUrl: './perfil-contato.component.html',
   styleUrl: './perfil-contato.component.css'
 })
 export class PerfilContatoComponent {
 
-   contato: Contato = {
+  contato: Contato = {
     id: 0,
     nome: '',
-    telefone: '123123123',
-    email: 'dev@email.com',
-    aniversario: '12/10/1990',
+    telefone: '',
+    email: '',
+    aniversario: '',
     redes: ''
   }
 
-  constructor(private router: Router) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private contatoService: ContatoService
+  ) { }
+  ngOnInit() {
+    // acessar os paramentros da rota
+    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'))
+    if(id !== 0 && id !== null){
+    this.contatoService.buscarContatoPorId(id).subscribe(contato => {
+      this.contato = contato
+    });
+    }
 
-  voltar (){
+  }
+
+
+   excluir(){
+    if(this.contato.id){
+      this.contatoService.excluirContato(this.contato.id).subscribe(() => {
+        this.router.navigate(['/lista-contatos']);
+      });
+    }
+   }
+
+  voltar() {
     this.router.navigate(['/lista-contatos']);
   }
 
