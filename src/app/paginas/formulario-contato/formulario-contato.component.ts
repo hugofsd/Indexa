@@ -15,7 +15,6 @@ import { Contato } from '../../componentes/contato/contato';
     SeparadorComponent,
     FormsModule,
     ReactiveFormsModule,
-    RouterLink
   ],
   standalone: true,
   templateUrl: './formulario-contato.component.html',
@@ -48,17 +47,20 @@ export class FormularioContatoComponent implements OnInit {
     })
   }
 
-   salvarContato() {
+  salvarContato() {
     const novoContato = this.contatoForm.value;
-    this.contatoService.salvarContato(novoContato);
-    this.contatoForm.reset();
-    this.router.navigateByUrl('/lista-contatos')
+    this.contatoService.salvarContato(novoContato).subscribe(() => {
+      this.contatoForm.reset();
+      this.router.navigateByUrl('/lista-contatos')
+    });
   }
-
   cancelar() {
     this.contatoForm.reset();
   }
 
+   voltar (){
+    this.router.navigate(['/lista-contatos']);
+  }
 
 
 }
