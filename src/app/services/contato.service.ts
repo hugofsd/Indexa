@@ -1,37 +1,24 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-
+import { Injectable } from '@angular/core';
 import { Contato } from '../componentes/contato/contato';
-import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContatoService {
 
-  private contatos: Contato[] = [
-    {"id": 1, "nome": "Ana", "telefone": "29 278869420", "email": "email@emal.com"},
-  ]
 
+  private readonly API = 'http://localhost:3000/contatos';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {
-    if (isPlatformBrowser(this.platformId)) {
-      const contatosLocalStorageString = localStorage.getItem('contatos');
-      const contatosLocalStorage = contatosLocalStorageString ? JSON.parse(contatosLocalStorageString) : null;
-      if (contatosLocalStorage) {
-        this.contatos = contatosLocalStorage;
-      }
-    }
+  constructor(private http: HttpClient) {
   }
 
-
-  obterContatos() {
-    return this.contatos;
+  obterContatos(): Observable<Contato[]> {
+    return this.http.get<Contato[]>(this.API);
   }
 
-   salvarContato(contato: Contato) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.contatos.push(contato);
-      localStorage.setItem('contatos', JSON.stringify(this.contatos));
-    }
+  salvarContato(contato: Contato) {
+
   }
 }
