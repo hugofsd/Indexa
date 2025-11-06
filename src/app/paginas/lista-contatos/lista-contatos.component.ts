@@ -8,11 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ContatoService } from '../../services/contato.service';
 
-interface Contato {
-  id: number
-  nome: string
-  telefone: string
-}
+import { Contato } from '../../componentes/contato/contato';
 
 @Component({
   selector: 'app-lista-contatos',
