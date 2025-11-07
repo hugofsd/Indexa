@@ -16,6 +16,11 @@
   </header>
 
   <section class="perfil">
+      <div class="imagem-perfil">
+      <img [src]="contato.avatar" alt="Avatar do contato">
+      <h2><strong>{{ contato.nome }}</strong></h2>
+    </div>
+    <app-separador></app-separador>
     <ul>
       <li>
         <i class="material-icons">call</i>
@@ -37,7 +42,7 @@
         <strong>Redes sociais</strong>
       </li>
       <li>{{ contato.redes }}</li>
-    </ul>
+    </ul><br>
     <div class="botoes">
       <button class="botao-excluir" (click)="excluir()">
         Excluir contato

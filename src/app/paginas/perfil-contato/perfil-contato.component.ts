@@ -4,6 +4,7 @@ import { ContainerComponent } from '../../componentes/container/container.compon
 import { CommonModule } from '@angular/common';
 import { Contato } from '../../componentes/contato/contato';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { SeparadorComponent } from "../../componentes/separador/separador.component";
 
 @Component({
   selector: 'app-perfil-contato',
@@ -11,7 +12,8 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
   imports: [
     CommonModule,
     ContainerComponent,
-  ],
+    SeparadorComponent
+],
   templateUrl: './perfil-contato.component.html',
   styleUrl: './perfil-contato.component.css'
 })
@@ -23,7 +25,9 @@ export class PerfilContatoComponent {
     telefone: '',
     email: '',
     aniversario: '',
-    redes: ''
+    redes: '',
+    observacoes: '',
+    avatar: ''
   }
 
   constructor(

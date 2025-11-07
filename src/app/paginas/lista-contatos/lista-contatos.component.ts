@@ -20,7 +20,6 @@ import { PerfilContatoComponent } from '../perfil-contato/perfil-contato.compone
              ContatoComponent,
              FormsModule,
              RouterLink,
-             PerfilContatoComponent,
              RouterLink
   ],
   templateUrl: './lista-contatos.component.html',
